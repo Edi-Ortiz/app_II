@@ -4,15 +4,9 @@ import { Container, Button, Text } from "native-base";
 
 const launchscreenBg = require("../../assets/fondo1.png");
 
-const PaginaPrincipal = ({navigation}) => {
-  const [gifs] = useState("");
+const paginaPrincipal = ({navigation}) => {
+const [gifs, setGifs] = useState("");
 
-  useEffect(() => {
-    (async () => await Font.loadAsync({
-      Roboto: require('native-base/Fonts/Roboto.ttf'),
-      Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
-    }))();
-     }, [])
 
 const touch = () => {
     navigation.navigate("Navegacion", { gifs })
@@ -24,7 +18,7 @@ const touch = () => {
           
           <View style={{ marginBottom: 200 }}>
             <Button large dark onPress={touch} name="gifs" style={{ backgroundColor: "#000000", alignSelf: "center", top : 550 }}>
-              <Text>BEGIN</Text>
+              <Text>Inicio</Text>
             </Button>
           </View>
         </ImageBackground>
@@ -49,7 +43,7 @@ const styles = StyleSheet.create ({
   }
 });
 
-export default PaginaPrincipal;
+export default paginaPrincipal;
 
 //<View style={styles.logoContainer}>
 //<ImageBackground source={launchscreenLogo} style={styles.logo} />
