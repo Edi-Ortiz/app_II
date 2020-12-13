@@ -1,21 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import {NavigationContainer} from "@react-navigation/native";
+import {createStackNavigator} from "@react-navigation/stack";
+import paginaPrincipal from "./src/screens/paginaPrincipal";
+import paginaNavegacion from "./src/screens/paginaNavegacion";
+import opciones from "./src/screens/opciones";
+import toplist from "./src/screens/toplist";
+import agregar from "./src/screens/agregar";
+import eliminar from "./src/screens/eliminar";
+import modificar from "./src/screens/modificar";
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Music Top List">
+      <Stack.Screen name="Music Top List" component={paginaPrincipal} />
+      <Stack.Screen name="Navegacion" component={paginaNavegacion} />
+      <Stack.Screen name="Opciones" component={opciones} />
+      <Stack.Screen name="Agregar" component={agregar} />
+      <Stack.Screen name="Top List" component={toplist} />
+      <Stack.Screen name="Modificar" component={modificar} />
+      <Stack.Screen name="Eliminar" component={eliminar} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
