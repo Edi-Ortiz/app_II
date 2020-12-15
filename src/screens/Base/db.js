@@ -22,8 +22,7 @@ const getMusic = (setMusic) => {
     });
 };
 
-
-const insertSong = async (name, duration, artist, year, succesFunc) => {
+const insertSong = async (name, duration, artist, year, successFunc) => {
     db.transaction(
         (tx) => {
             tx.executeSql("insert into list (name, duration, artist, year) values (?, ?, ?, ?)",[
@@ -79,6 +78,24 @@ const dropDatabaseTableAsync = async () => {
     });
   };
   
+  const deleteSongById = (id, setSongFunc) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        "delete * from list where id = ?",
+        [id],
+        (_, { rows: { _array } }) => {
+          setSongFunc(_array);
+        },
+        (_t, error) => {
+          console.log("Error al momento de eliminar la cancion");
+          console.log(error);
+        },
+        (_t, _success) => {
+          console.log("Cancion eliminada");
+        }
+      );
+    });
+  };
 
   const setupDatabaseTableAsync = async () => {
     return new Promise((resolve, reject) => {
@@ -100,6 +117,8 @@ const dropDatabaseTableAsync = async () => {
       );
     });
   };
+
+  
 
   const setupSongAsync = async () => {
     return new Promise((resolve, reject) => {
@@ -127,6 +146,7 @@ const dropDatabaseTableAsync = async () => {
   export const database = {
     getMusic,
     insertSong,
+    deleteSongById,
     dropDatabaseTableAsync,
     setupDatabaseTableAsync,
     getSongById,
