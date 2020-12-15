@@ -28,6 +28,8 @@ const NewSongScreen = ({ navigation }) => {
   const [errorSong, setErrorSong] = useState(false);
   const newSongContext = useContext(NewSongContext);
   const { addNewSong, refreshSongs } = newSongContext;
+
+
   
   // Cargar la fuente de manera asíncrona
   useEffect(() => {
@@ -72,16 +74,16 @@ const NewSongScreen = ({ navigation }) => {
   return (
     <Content>
       <Container>
-      <ImageBackground source={launchscreenBg} style={styles.imageContainer}>
-        <H1>Ingresa el nombre de la cancion</H1>
+      <ImageBackground source={launchscreenBg} style={(styles.imageContainer)} style={(stylesss.texto)}> 
+        <Text style={stylesss.H1}>Ingrese el nombre de la canción</Text>
         <Textarea
           rowSpan={1}
           bordered
-          placeholder="Nombre de la cancion"
+          placeholder="Nombre de la canción"
           value={name}
           onChangeText={setName}
           />
-        <H1>Ingresa la duracion de la cancion</H1>
+        <Text style={stylesss.H1}>Ingrese la duración de la canción</Text>
         <Textarea
           rowSpan={1}
           bordered
@@ -90,7 +92,7 @@ const NewSongScreen = ({ navigation }) => {
           onChangeText={setDuration}
           />
 
-        <H1>Ingresa el nombre del artista</H1>
+        <Text style={stylesss.H1}>Ingrese el nombre del artista</Text>
         <Textarea
           rowSpan={1}
           bordered
@@ -99,7 +101,7 @@ const NewSongScreen = ({ navigation }) => {
           onChangeText={setArtist}
           />
 
-        <H1>Ingresa el año en que se estreno la cancion</H1>
+        <Text style={stylesss.H1}>Ingrese el año que se estreno la canción</Text>
         <Textarea
           rowSpan={1}
           bordered
@@ -107,9 +109,10 @@ const NewSongScreen = ({ navigation }) => {
           value={year}
           onChangeText={setYear}
           />
-        <Button
-          style={styles.button}
+        <Button style={{alignSelf: "center", top : 50 }}
+          stydle={styles.button}
           onPress={handlerNewSong}
+          
           // disabled={enableSave}
         >
           <Text>Guardar</Text>
@@ -136,11 +139,24 @@ const styles = StyleSheet.create({
   },
   button: {
     fontFamily: "Roboto",
+    top: 100,
   },
   error: {
     fontSize: 12,
     color: "red",
     marginBottom: 10,
+  },
+});
+
+const stylesss = StyleSheet.create({
+  texto: {
+    flex: 1,
+    justifyContent:"center",
+  },
+  H1: {
+     fontSize:25,
+     color:"#FFFFFF",
+     fontFamily: "Roboto",
   },
 });
 
