@@ -17,7 +17,7 @@ const touch = () => {
         <ImageBackground source={launchscreenBg} style={styles.imageContainer}>
           
           <View style={{ marginBottom: 200 }}>
-            <Button large dark onPress={touch} name="gifs" style={{ backgroundColor: "#000000", alignSelf: "center", top : 550 }}>
+            <Button large dark onPress={touch} name="gifs" style={{ backgroundColor: "#000000", alignSelf: "center", top : 300 }}>
               <Text>Inicio</Text>
             </Button>
           </View>
