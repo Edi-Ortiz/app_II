@@ -44,17 +44,17 @@ const NewSongScreen = ({ navigation }) => {
     loadFontsAsync();
   }, []);
 
-  // Ejecutar el efecto cuando el valor de la nota cambie
+  // Ejecutar el efecto cuando el valor de la cancion cambie
   useEffect(() => {
-    if (name&&duration&&artist&&year) {
+    if (name || duration || artist || year) {
       setEnableSave(false);
     }
     else setEnableSave(true);
   }, [name, duration, artist, year]);
 
   const handlerNewSong = async () => {
-    // Validar que la nota tiene valor
-    if (name&&duration&&artist&&year) {
+    // Validar que la cancion tiene valores
+    if (name || duration || artist || year) {
       await addNewSong(name, duration, artist, year, refreshSongs);
 
       // Regresar a la pantalla anterior
@@ -69,7 +69,7 @@ const NewSongScreen = ({ navigation }) => {
       <Content contentContainerStyle={styles.content}>
         <Spinner color="blue" />
       </Content>
-    );
+    )
 
   return (
     <Content>

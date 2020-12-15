@@ -4,7 +4,8 @@ import { database } from "../screens/Base/db";
 // Crear el contexto de las notas
 export const NewSongContext = createContext({});
 
-export const NotesContextProvider = (props) => {
+
+export const NewSongContextProvider = (props) => {
   // Obtener los valores iniciales para el contexto
   // se obtienen desde los props
   const { songs: initialSongs, children } = props;
@@ -54,7 +55,7 @@ export const NotesContextProvider = (props) => {
   };
 
   // Pasar los valores al proveedor y retornarlo
-  eturn (
+  return (
     <NewSongContext.Provider value={songContext}>
       {children}
     </NewSongContext.Provider>

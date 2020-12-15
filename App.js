@@ -8,35 +8,18 @@ import toplist from "./src/screens/toplist";
 import agregar from "./src/screens/agregar";
 import eliminar from "./src/screens/eliminar";
 import modificar from "./src/screens/modificar";
-import * as Font from "expo-font"
-import {Content, Spinner} from "native-base"
+import useDatabase from "./src/screens/hooks/useDatabase"
+import * as SplashScreen from "expo-splash-screen"
+import {NewSongContextProvider} from "./src/Context/NewSongContext"
 
 const Stack = createStackNavigator();
 
 export default function App() {
-  const [fontsLoaded, setFontsLoaded] = useState(false);
-
-  useEffect(() => {
-    const loadFontsAsync = async () => {
-      await Font.loadAsync({
-        Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
-      }).then(() => {
-        setFontsLoaded(true);
-      });
-    };
-  
-    loadFontsAsync();
-  }, []);
-
-  if (!fontsLoaded)
-    return (
-      <Content>
-        <Spinner color="blue" />
-      </Content>
-    );
-
+    const isLoadingComplete = useDatabase();
+    if (isLoadingComplete) SplashScreen.hideAsync();
 
   return (
+   <NewSongContextProvider>
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Music Top List">
       <Stack.Screen name="Music Top List" component={paginaPrincipal} />
@@ -48,7 +31,9 @@ export default function App() {
       <Stack.Screen name="Eliminar" component={eliminar} />
       </Stack.Navigator>
     </NavigationContainer>
+    </NewSongContextProvider> 
   )
 }
+
 
 

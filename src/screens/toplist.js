@@ -14,36 +14,33 @@ import {
 
 const launchscreenBg = require("../../assets/fondo4.png");
 
-// Utilizar el contexto de notas
+// Utilizar el contexto de las canciones
 import { NewSongContext } from "../Context/NewSongContext";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 const SongListSreen = ({ navigation }) => {
   const { songs } = useContext(NewSongContext);
 
   return (
     <Container>
-       <ImageBackground source={launchscreenBg} style={styles.imageContainer}>
-      <Content>
-        <List>
+     <ImageBackground source={launchscreenBg} style={styles.imageContainer}>
+        <List style={styles.list}>
           {songs
             ? songs.map((song) => (
                 <ListItem
                   key={song.id.toString()}
-                  onPress={() => {
-                    navigation.navigate("songModify", { id: song.id });
-                  }}
-                >
+                  >
                   <Body>
-                    <Text numberOfLines={2}>{song.song}</Text>
+                  <Text numberOfLines={2} style={styles.name}>Numero de cancion: {song.id}</Text>
+                    <Text numberOfLines={2} style={styles.name}>Nombre: {song.name}</Text>
+                    <Text numberOfLines={2} style={styles.name}>Duracion: {song.duration}</Text>
+                    <Text numberOfLines={2} style={styles.name}>Artista: {song.artist}</Text>
+                    <Text numberOfLines={2} style={styles.name}>año: {song.year}</Text>
                   </Body>
-                  <Right>
-                    <Icon name="arrow-forward" />
-                  </Right>
                 </ListItem>
               ))
             : null}
         </List>
-      </Content>
       </ImageBackground>
     </Container>
   );
@@ -56,8 +53,13 @@ const styles = StyleSheet.create ({
     width: null,
     height: null,
     justifyContent: 'center',
-  
-  }
+  },
+  text: {
+    color: "#fff",
+  },
+  list:{
+    backgroundColor: "royalblue",
+  },
 });
 
 
