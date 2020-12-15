@@ -77,11 +77,32 @@ const dropDatabaseTableAsync = async () => {
       );
     });
   };
+
+  const updateSong = async (name, duration, artist, year, id, successFunc) => {
+    db.transaction(
+      (tx) => {
+        tx.executeSql("UPDATE list SET name = ?, duration = ?, artist = ?, year = ? where id = ?", [
+          name,
+          duration,
+          artist,
+          year,
+          id,
+        ]);
+      },
+      (_t, error) => {
+        console.log("Error al actualizar la cancion");
+        console.log(error);
+      },
+      (_t, _success) => {
+        successFunc;
+      }
+    );
+  };
   
   const deleteSongById = (id, setSongFunc) => {
     db.transaction((tx) => {
       tx.executeSql(
-        "delete * from list where id = ?",
+        "delete from list where id = ?",
         [id],
         (_, { rows: { _array } }) => {
           setSongFunc(_array);
@@ -96,6 +117,7 @@ const dropDatabaseTableAsync = async () => {
       );
     });
   };
+
 
   const setupDatabaseTableAsync = async () => {
     return new Promise((resolve, reject) => {
@@ -147,6 +169,7 @@ const dropDatabaseTableAsync = async () => {
     getMusic,
     insertSong,
     deleteSongById,
+    updateSong,
     dropDatabaseTableAsync,
     setupDatabaseTableAsync,
     getSongById,

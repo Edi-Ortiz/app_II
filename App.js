@@ -9,6 +9,7 @@ import agregar from "./src/screens/agregar";
 import eliminar from "./src/screens/eliminar";
 import modificar from "./src/screens/modificar";
 import useDatabase from "./src/screens/hooks/useDatabase"
+import ModifySongScreen from "./src/screens/modificarCancion"
 import * as SplashScreen from "expo-splash-screen"
 import {NewSongContextProvider} from "./src/Context/NewSongContext"
 
@@ -29,6 +30,7 @@ export default function App() {
       <Stack.Screen name="Top List" component={toplist} />
       <Stack.Screen name="Modificar" component={modificar} />
       <Stack.Screen name="Eliminar" component={eliminar} />
+      <Stack.Screen name="modifySong" component={ModifySongScreen} />
       </Stack.Navigator>
     </NavigationContainer>
     </NewSongContextProvider> 
