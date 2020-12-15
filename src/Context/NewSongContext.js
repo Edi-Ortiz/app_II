@@ -27,11 +27,21 @@ export const NewSongContextProvider = (props) => {
     return database.getMusic(setSongs);
   };
 
+  const deleteSong =  async (id) => {
+     await database.deleteSongById(id, refreshSongs);
+    return refreshSongs();
+  }
+
   const addNewSong = async (name, duration, artist, year) => {
     await database.insertSong(name, duration, artist, year, refreshSongs);
     return refreshSongs();
   };
 
+  const updateSong = async(name, duration, artist, year ,id) => {
+    await database.updateSong(name, duration, artist, year, id, refreshSongs);
+    console.log(id);
+    return refreshSongs();
+  }
 
   const getSongById = (id) => {
     return database.getSongById(id, setSong);
@@ -50,6 +60,8 @@ export const NewSongContextProvider = (props) => {
   const songContext = {
     songs,
     song,
+    deleteSong,
+    updateSong,
     addNewSong,
     getSongById,
   };
